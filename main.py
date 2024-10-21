@@ -4,19 +4,19 @@ books = [
     [
         'George Orwell ',
         '"1984"',
-        0,
+        50,
         240
      ],
     [
         'J.R.R. Tolkien ',
         '"The Lord of the Rings"',
-        0,
+        100,
         500
      ],
     [
         'Stephenie Meyer',
         'The Twilight Saga',
-        0,
+        78,
         367
     ]
 ]
@@ -110,4 +110,17 @@ while True:
             removeBook()
             printBooks()
         case 5:
-                exit(1)
+            print('Page numbers or authors?')
+            kas = input()
+            print('Book cover?')
+            koks = input()
+
+            print("opt kas")
+            if kas == 'page numbers':
+                print('Filtered by page numbers')
+                printBooks(range(2, 3))
+            if kas == 'authors':
+                print('Filtered by authors')
+        case 6:
+            print('Good luck')
+            exit(1)
