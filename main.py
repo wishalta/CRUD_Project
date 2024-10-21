@@ -1,96 +1,102 @@
 import datetime
 
-flights = [
+books = [
     [
-        'vno',
-        'kns',
-        datetime.datetime(2024, 10, 15, 14, 30, 0),
-        datetime.datetime(2024, 10, 15, 16, 30, 0)
-    ],
+        'George Orwell ',
+        '"1984"',
+        0,
+        '/',
+        240
+     ],
     [
-        'vno',
-        'tln',
-        datetime.datetime(2024, 10, 15, 14, 30, 0),
-        datetime.datetime(2024, 10, 15, 20, 30, 0)
-    ],
+        'J.R.R. Tolkien ',
+        '"The Lord of the Rings"',
+        0,
+        '/',
+        500
+     ],
     [
-        'vno',
-        'chr',
-        datetime.datetime(2024, 10, 15, 14, 30, 0),
-        datetime.datetime(2024, 10, 15, 15, 00, 0)
+        'Stephenie Meyer',
+        'The Twilight Saga',
+        0,
+        '/',
+        367
     ]
 ]
-
 def printInfo():
     print("-------------------------------")
-    print("1. sarasas 2. ideti 3. redaguoti 4. trinti 5. baigti programa")
-    print("1. Skrydziu atvaizdavimas")
-    print("2. Naujo skrydzio ikelimas")
-    print("3. Skrydzio redagavimas")
-    print("4. Skrydzio salinimas")
-    print("5. Iseiti is programos")
+    print("1. List 2. Add 3. Edit 4. Delete 5. Finish program")
+    print("1. Finished books")
+    print("2. New book")
+    print("3. Your current page in certain book")
+    print("4. Remove book from list")
+    print("5. Exit")
     print("-------------------------------")
 
 
-def printFlags(fl, num = 1):
-    print(f'{num}, Skrydzio is {fl[0]} i { fl[1]}. Pakyla {fl[2]}, nusileidzia {fl[3]}. Skrydzio tukme {fl[3] - fl[2]} ')
+def printBook(bk, num = 1):
+        print(f'{num} Author: {bk[0]} Book: {bk[1]} Pages: {bk[2]}{bk[3]}{bk[4]}')
 
 
-def printFlights():
+def printBooks():
     num = 1
-    for fl in flights:
-        printFlights(fl, num)
+    for bk in books:
+        printBook(bk, num)
         num += 1
+    # num = 1
+    # for bk in books:
+    #     printBook(bk, num)
+    #     num += 1
 
 
-def addFlight():
-    print('Is kur skrenda?')
-    flFrom = input()
-    print('I kur skrenda?')
-    flTo = input()
-    print('Kada kyla? (yyyy-mm-dd hh:mm:ss)')
-    flLeave = datatime.datetime.strptime(input(), "%Y-%m-%d %H-%M-%S")
-    print('Kada leidziasi? (yyyy-mm-dd hh:mm:ss)')
-    flArrive = datatime.datetime.strptime(input(), "%Y-%m-%d %H-%M-%S")
-    flights.append([flFrom, flTo, flLeave, flArrive])
+def addBook():
+    print('Book author: ')
+    bkauthor = input()
+    print('Book name: ')
+    bkname = input()
+    print('Pages you read: ')
+    bkPageread = int(input())
+    print('Total pages: ')
+    bkTotalpage = int(input())
+    books.append([bkauthor, bkname, bkPageread, '/', bkTotalpage])
 
 
-def editFlight():
-    print('Iveskite skrydzio numeri kuri norite redaguoti')
+def editBook():
+    print('knyga kuria norite redaguoti: ')
     ed = int(input())
-    printFlight(flights[ed - 1])
+    printBook(books[ed - 1])
     print('Suveskite naujas reiksmes: ')
-    print('Is kur skrenda?')
-    flFrom = input()
-    print('I kur skrenda?')
-    flTo = input()
-    print('Kada kyla? (yyyy-mm-dd hh:mm:ss)')
-    flLeave = datatime.datetime.strptime(input(), "%Y-%m-%d %H-%M-%S")
-    print('Kada leidziasi? (yyyy-mm-dd hh:mm:ss)')
-    flArrive = datatime.datetime.strptime(input(), "%Y-%m-%d %H-%M-%S")
-    flights[ed - 1] = ([flFrom, flTo, flLeave, flArrive])
+    print('Book author: ')
+    bkauhtor = input()
+    print('Book name: ')
+    bkname = input()
+    print('Pages you read: ')
+    bkpagesread = int(input())
+    print('Pages in book: ')
+    bkpages = int(input())
+    books[ed - 1] = ([bkauhtor, bkname, bkpagesread, '/', bkpages,])
 
-def removeFlight():
-    print('Iveskite skrydzio numeri kuri norite pasalinti')
+def removeBook():
+    print('Which book you want to remove (number): ')
     rem = int(input())
-    flights.pop(rem - 1)
+    books.pop(rem - 1)
 
-print('-----SKRYDZIU VALDYMO SISTEMA-----')
+print('-----BOOK LIST1-----')
 
 while True:
     printInfo()
-    opt = int(input())
+    opt = int(input('Choice: '))
     match opt:
         case 1:
-            printFlights()
+            printBooks()
         case 2:
-            addFlight()
-            printFlights()
+            addBook()
+            printBooks()
         case 3:
-            editFlight()
-            printFlights()
+            editBook()
+            printBooks()
         case 4:
-            removeFlight()
-            printFlights()
+            removeBook()
+            printBooks()
         case 5:
                 exit(1)
