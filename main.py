@@ -5,21 +5,18 @@ books = [
         'George Orwell ',
         '"1984"',
         0,
-        '/',
         240
      ],
     [
         'J.R.R. Tolkien ',
         '"The Lord of the Rings"',
         0,
-        '/',
         500
      ],
     [
         'Stephenie Meyer',
         'The Twilight Saga',
         0,
-        '/',
         367
     ]
 ]
@@ -28,14 +25,14 @@ def printInfo():
     print("1. List 2. Add 3. Edit 4. Delete 5. Finish program")
     print("1. Finished books")
     print("2. New book")
-    print("3. Your current page in certain book")
+    print("3. Your current page or edit book")
     print("4. Remove book from list")
     print("5. Exit")
     print("-------------------------------")
 
 
 def printBook(bk, num = 1):
-        print(f'{num} Author: {bk[0]} Book: {bk[1]} Pages: {bk[2]}{bk[3]}{bk[4]}')
+        print(f'{num} Author: {bk[0]} Book: {bk[1]} Pages: {bk[2]}/{bk[3]}')
 
 
 def printBooks():
@@ -58,7 +55,7 @@ def addBook():
     bkPageread = int(input())
     print('Total pages: ')
     bkTotalpage = int(input())
-    books.append([bkauthor, bkname, bkPageread, '/', bkTotalpage])
+    books.append([bkauthor, bkname, bkPageread, bkTotalpage])
 
 
 def editBook():
@@ -74,14 +71,22 @@ def editBook():
     bkpagesread = int(input())
     print('Pages in book: ')
     bkpages = int(input())
-    books[ed - 1] = ([bkauhtor, bkname, bkpagesread, '/', bkpages,])
+    books[ed - 1] = ([bkauhtor, bkname, bkpagesread, bkpages,])
 
 def removeBook():
     print('Which book you want to remove (number): ')
     rem = int(input())
     books.pop(rem - 1)
 
-print('-----BOOK LIST1-----')
+def editPages():
+    print('Kuri knyga: ')
+    order = int(input())
+    printBook(books[order - 1])
+    print('Pages done: ')
+    pagesdone = int(input())
+    books[order -1][2] = pagesdone
+
+print('-----BOOK LIST-----')
 
 while True:
     printInfo()
@@ -93,8 +98,14 @@ while True:
             addBook()
             printBooks()
         case 3:
-            editBook()
-            printBooks()
+            print('Change pages or book info (1 - if pages/2 - if book)')
+            choice = int(input())
+            if choice == 1:
+                editPages()
+                printBooks()
+            if choice == 2:
+                editBook()
+                printBooks()
         case 4:
             removeBook()
             printBooks()
